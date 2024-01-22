@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather Forecast</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/master.css">
+</head>
+<div class="topNav">
+    EurOrbit <br>
+    <h1>European Weather Forecast</h1>
+</div>
+
+<body>
+
+    <div class="container">
+        <div class="poweredBy" id="poweredBy">Powered by <a href="https://www.7timer.info/doc.php?lang=en"
+                target="_blank"> 7timer!
+            </a>
+        </div>
+
+        <select class="form-select" id="selectId" onchange="selectFunction()">
+            <option value="" selected disabled hidden> -select-a-city- </option>
+            <option value="lon=-4.904&lat=52.367"> Amsterdam,Netherlands </option>
+            <option value="lon=-39.933&lat=32.859"> Ankara,Turkey </option>
+            <option value="lon=12.945&lat=56.134"> Åstorp,Sweden </option>
+            <option value="lon=23.727&lat=37.983"> Athens,Greece </option>
+            <option value="lon=-5.930&lat=54.597"> Belfast,Northern Ireland </option>
+            <option value="lon=2.168&lat=41.387"> Barcelona,Spain </option>
+            <option value="lon=13.405&lat=52.520"> Berlin,Germany </option>
+            <option value="lon=7.447&lat=46.948"> Bern,Switzerland </option>
+            <option value="lon=-2.935&lat=43.263"> Bilbao,Spain </option>
+            <option value="lon=4.357&lat=50.847"> Brussels,Belgium </option>
+            <option value="lon=19.040&lat=47.497"> Bucharest,Romania </option>
+            <option value="lon=18.068&lat=59.329"> Budapest,Hungary </option>
+            <option value="lon=-3.168&lat=51.483"> Cardiff,Wales </option>
+            <option value="lon=6.96&lat=50.937"> Cologne,Germany </option>
+            <option value="lon=12.568&lat=55.676"> Copenhagen,Denmark </option>
+            <option value="lon=-8.475&lat=51.898"> Cork,Ireland </option>
+            <option value="lon=-6.260&lat=53.349"> Dublin,Ireland </option>
+            <option value="lon=-3.188&lat=55.953"> Edinburgh,Scotland </option>
+            <option value="lon=11.255&lat=43.7696"> Florence,Italy </option>
+            <option value="lon=8.682&lat=50.110"> Frankfurt,Germany </option>
+            <option value="lon=6.637&lat=43.254"> French Riviera,France </option>
+            <option value="lon=-16.908&lat=32.650"> Funchal,Portugual </option>
+            <option value="lon=-5.353&lat=36.140"> Gibraltar </option>
+            <option value="lon=11.974&lat=57.708"> Gothenburg,Sweden </option>
+            <option value="lon=9.987&lat=53.548"> Hamburg,Germany </option>
+            <option value="lon=24.938&lat=60.169"> Helsinki,Finland </option>
+            <option value="lon=1.482&lat=39.020"> Ibiza,Spain </option>
+            <option value="lon=30.523&lat=50.450"> Kyiv,Ukraine </option>
+            <option value="lon=10.466&lat=61.115"> Lillehammer,Norway </option>
+            <option value="lon=-9.139&lat=38.722"> Lisbon,Portugual </option>
+            <option value="lon=-0.127&lat=51.507"> London,England </option>
+            <option value="lon=-3.703&lat=40.416"> Madrid,Spain </option>
+            <option value="lon=3.017&lat=39.695"> Mallorca,Spain </option>
+            <option value="lon=-2.242&lat=53.480"> Manchester,England </option>
+            <option value="lon=5.369&lat=43.296"> Marseille,France </option>
+            <option value="lon=-15.586&lat=27.760"> Maspalomas,Spain </option>
+            <option value="lon=9.190&lat=45.464"> Milan,Italy </option>
+            <option value="lon=11.582&lat=48.135"> Munich,Germany </option>
+            <option value="lon=14.268&lat=40.851"> Naples,Italy </option>
+            <option value="lon=-2.417&lat=43.034"> Oñati,Spain </option>
+            <option value="lon=10.752&lat=59.913"> Oslo,Norway </option>
+            <option value="lon=2.352&lat=48.856"> Paris,France </option>
+            <option value="lon=14.437&lat=50.075"> Prague,Czech Republic </option>
+            <option value="lon=-21.942&lat=64.146"> Reykjavík,Iceland </option>
+            <option value="lon=24.603&lat=56.879"> Riga,Latvia </option>
+            <option value="lon=12.496&lat=41.902"> Rome,Italy </option>
+            <option value="lon=-31.127&lat=39.453"> Santa Cruz das Flores,Portugual </option>
+            <option value="lon=-16.251&lat=28.463"> Santa Cruz de Tenerife,Spain </option>
+            <option value="lon=-6.215&lat=57.273"> Skye,Scotland </option>
+            <option value="lon=23.321&lat=42.697"> Sofia,Bulgaria </option>
+            <option value="lon=18.068&lat=59.329"> Stockholm,Sweden </option>
+            <option value="lon=24.753&lat=59.437"> Tallinn,Estonia </option>
+            <option value="lon=16.373&lat=18.208"> Vienna,Austria </option>
+            <option value="lon=21.012&lat=52.229"> Warsaw,Poland </option>
+            <option value="lon=-1.07&lat=53.961"> York,England </option>
+            <option value="lon=8.541&lat=47.376"> Zurich,Switzerland </option>
+            <option value="ThisValueIsCausingError"> Error Option </option>
+        </select>
+
+        <div class="hiddenDiv" id="hiddenDiv">
+            <div class="row">
+
+                <div class="card">
+                    <img id="img0">
+                    <div class="card-content">
+                        <h id="date0"> </h><br>
+                        <h id="weather0"></h><br>
+                        <h id="tempMax0"></h><br>
+                        <h id="tempMin0"></h><br>
+                        <h id="wind10m_max0"></h><br>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img id="img1">
+                    <div class="card-content">
+                        <h id="date1"> </h><br>
+                        <h id="weather1"></h><br>
+                        <h id="tempMax1"></h><br>
+                        <h id="tempMin1"></h><br>
+                        <h id="wind10m_max1"></h><br>
+                    </div>
+                </div>
+
+
+
+                <div class="card">
+                    <img id="img2">
+                    <div class="card-content">
+                        <h id="date2"> </h><br>
+                        <h id="weather2"></h><br>
+                        <h id="tempMax2"></h><br>
+                        <h id="tempMin2"></h><br>
+                        <h id="wind10m_max2"></h><br>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img id="img3">
+                    <div class="card-content">
+                        <h id="date3"> </h><br>
+                        <h id="weather3"></h><br>
+                        <h id="tempMax3"></h><br>
+                        <h id="tempMin3"></h><br>
+                        <h id="wind10m_max3"></h><br>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img id="img4">
+                    <div class="card-content">
+                        <h id="date4"> </h><br>
+                        <h id="weather4"></h><br>
+                        <h id="tempMax4"></h><br>
+                        <h id="tempMin4"></h><br>
+                        <h id="wind10m_max4"></h><br>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <img id="img5">
+                    <div class="card-content">
+                        <h id="date5"> </h><br>
+                        <h id="weather5"></h><br>
+                        <h id="tempMax5"></h><br>
+                        <h id="tempMin5"></h><br>
+                        <h id="wind10m_max5"></h><br>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img id="img6">
+                    <div class="card-content">
+                        <h id="date6"> </h><br>
+                        <h id="weather6"></h><br>
+                        <h id="tempMax6"></h><br>
+                        <h id="tempMin6"></h><br>
+                        <h id="wind10m_max6"></h><br>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <br>
+
+        </div>
+
+        <footer class="footer">
+            <p class="copyright-text">© Copyright 2024 EurOrbit </p>
+        </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

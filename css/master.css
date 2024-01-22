@@ -1,0 +1,79 @@
+body,
+html {
+    background-image: url("https://cdn.pixabay.com/photo/2016/11/23/13/48/beach-1852945_1280.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: sans-serif;
+}
+
+.topNav {
+    background-color: lightgray;
+    font-family: fantasy;
+    text-align: center;
+    color: black;
+    font-size: 30px;
+    text-decoration: solid;
+}
+
+h1 {
+    color: black;
+    max-width: fit-content;
+    margin: auto;
+    margin-bottom: 2%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.poweredBy {
+    color: white;
+    background-color: black;
+    max-width: fit-content;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.form-select {
+    background-color: lightgray;
+    color: black;
+    max-width: fit-content;
+    border-width: 5px;
+    border-style: double;
+    border-color: black;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 7%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.hiddenDiv {
+    display: none;
+}
+
+.card {
+    width: 145px;
+    margin: auto;
+    margin-top: 5px;
+    background-color: lightgray;
+    color: black;
+    border-radius: 10px;
+    border-color: black;
+    border-width: 5px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+    min-height: fit-content;
+}
+
+.footer {
+    position: fixed;
+    color: black;
+    background-color: lightgray;
+    height: 25px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
