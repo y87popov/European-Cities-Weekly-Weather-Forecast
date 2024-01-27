@@ -1,58 +1,49 @@
-async function selectFunction() {
-    coordinates = document.getElementById('selectId').value;
-    url = "https://www.7timer.info/bin/api.pl?" + coordinates + "&product=civillight&output=json";
-    showResult(url);
+async function selectFunction() { // Assembles the url.
+    var coordinates = document.getElementById('selectId').value; // Taking the coordinates from the selected city.
+    var url = "https://www.7timer.info/bin/api.pl?" + coordinates + "&product=civillight&output=json"; // Appending the first part of the url + the coordinates + the second part.
+    showResult(url); // Calling the showResult function, passing the url as a parameter. 
 }
-async function showResult(url) {
-    for (x = 0; x < 5; x++) {
-
+async function showResult(url) { //Showing result, but also catching an error if there is no proper response from the server.
+    for (x = 0; x < 5; x++) { // It will try to fetch data and show the result 5 times in total, if there is a proper response it will stop/break.
         try {
-
-            weatherData = [];
-            const response = await fetch(url);
-            var weatherData = await response.json();
-            for (i = 0; i < 7; i++) {
-                const d = (weatherData["dataseries"][i]["date"]);
-                var dateString = JSON.stringify(d);
-                var year = dateString.substring(0, 4);
-                var month = dateString.substring(4, 6);
-                var day = dateString.substring(6, 8);
-                var date = new Date(year, month - 1, day);
-                const weather = (weatherData["dataseries"][i]["weather"]);
-                const tempMax = (weatherData["dataseries"][i]["temp2m"]["max"]);
-                const tempMin = (weatherData["dataseries"][i]["temp2m"]["min"]);
-                const wind10m_max = (weatherData["dataseries"][i]["wind10m_max"]);
-                document.getElementById("date" + i).innerHTML = date.toDateString();
-                document.getElementById("weather" + i).innerHTML = JSON.stringify(weather);
-                document.getElementById("tempMax" + i).innerHTML = "Temp Max: " + JSON.stringify(tempMax) + "ºC";
-                document.getElementById("tempMin" + i).innerHTML = "Temp Min: " + JSON.stringify(tempMin) + "ºC";
-                document.getElementById("wind10m_max" + i).innerHTML = "Wind max: " + JSON.stringify(wind10m_max);
-                selectWeatherImage(weather, i);
-                    asdasdsad;
-
+            console.log("Getting weather forecast...");
+            var weatherData = []; // Declaring an Array where the data will be written. 
+            var response = await fetch(url); // Getting data from the url.
+            weatherData = await response.json(); // Assigns the fetched data to the variable WeatherData. 
+            for (i = 0; i < 7; i++) { // A for loop for each day of the week. 
+                var d = (weatherData["dataseries"][i]["date"]); // Getting the date. For now it is just a number, not a proper date format.
+                var dateString = JSON.stringify(d); // Casting the date from a number to a string.
+                var year = dateString.substring(0, 4); // Taking the first 4 symbols as an year.
+                var month = dateString.substring(4, 6); // Taking the 5th and 6th symbols as a month.
+                var day = dateString.substring(6, 8); // Taking the last 2 symbols as a day of the month.
+                var date = new Date(year, month - 1, day); // Casting the above into a regular date format.
+                var weather = (weatherData["dataseries"][i]["weather"]); // Saving the weather for each day into the weather variable.
+                var tempMax = (weatherData["dataseries"][i]["temp2m"]["max"]); // Saving the maximum temperature for each day into the tempMax variable.
+                var tempMin = (weatherData["dataseries"][i]["temp2m"]["min"]); // Saving the minimum temperature for each day into the tempMin variable.
+                var wind = (weatherData["dataseries"][i]["wind10m_max"]); // Saving the wind speed for each day into the wind variable.
+                document.getElementById("date" + i).innerHTML = date.toDateString(); // Showing the date for each day.
+                document.getElementById("weather" + i).innerHTML = JSON.stringify(weather); // Showing the weather for each day.
+                document.getElementById("tempMax" + i).innerHTML = JSON.stringify(tempMax) + "ºC "; // Showing the maximum temperatures for each day.
+                document.getElementById("tempMin" + i).innerHTML = JSON.stringify(tempMin) + "ºC"; // Showing the minimum temperatures for each day.
+                document.getElementById("wind" + i).innerHTML = "Wind: " + JSON.stringify(wind); // Showing the wind speed for each day.
+                selectWeatherImage(weather, i); // Calling the function that determines the image for the weather.
             }
-            document.getElementById("hiddenDiv").style.display = "block"
+            document.getElementById("hiddenDiv").style.display = "block" // Showing the cards. (They are not shown before this.)
             console.log("Result shown successfully.");
-            break;
+            break; // If the response from the server is correct it will stop executing the for loop.
         }
-
         catch (err) {
-
-            console.log("Error!");
-
-            if (x == 4) {
+            if (x != 4) { // If the error was repeated less than 5 times it will just continue.
+                console.log("Error!");
+            }
+            else { // If the error has being repeated for the 5th time it will show an alert and stop.
                 alert("We cannot show you the forecast at this time. Please, try again later.");
                 console.log("We cannot show you the forecast at this time. Please, try again later.");
-                break;
-
             }
-
-
         }
-
     }
 }
-function selectWeatherImage(weather, i) {
+async function selectWeatherImage(weather, i) { // Selecting an image for each weather.
     if (weather == "clear") { document.getElementById("img" + i).src = "images/clear.png"; }
     if (weather == "cloudy") { document.getElementById("img" + i).src = ("images/cloudy.png"); }
     if (weather == "fog") { document.getElementById("img" + i).src = ("images/fog.png"); }

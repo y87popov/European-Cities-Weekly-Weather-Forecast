@@ -77,3 +77,11 @@ h1 {
     text-align: left;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+.tempMax{
+    color: red;
+    
+}
+.tempMin{
+    color: blue;
+    
+}

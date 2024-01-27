@@ -8,7 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/master.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
 </head>
+
 <div class="topNav">
     EurOrbit <br>
     <h1>European Weather Forecast</h1>
@@ -23,7 +26,7 @@
         </div>
 
         <select class="form-select" id="selectId" onchange="selectFunction()">
-            <option value="" selected disabled hidden> -select-a-city- </option>
+            <option selected disabled hidden> -select-a-city- </option>
             <option value="lon=-4.904&lat=52.367"> Amsterdam,Netherlands </option>
             <option value="lon=-39.933&lat=32.859"> Ankara,Turkey </option>
             <option value="lon=12.945&lat=56.134"> Åstorp,Sweden </option>
@@ -80,7 +83,7 @@
             <option value="lon=21.012&lat=52.229"> Warsaw,Poland </option>
             <option value="lon=-1.07&lat=53.961"> York,England </option>
             <option value="lon=8.541&lat=47.376"> Zurich,Switzerland </option>
-            <option value="ThisValueIsCausingError"> Error Option </option>
+            <option value="IntentionalError"> Error Option </option>
         </select>
 
         <div class="hiddenDiv" id="hiddenDiv">
@@ -91,9 +94,9 @@
                     <div class="card-content">
                         <h id="date0"> </h><br>
                         <h id="weather0"></h><br>
-                        <h id="tempMax0"></h><br>
-                        <h id="tempMin0"></h><br>
-                        <h id="wind10m_max0"></h><br>
+                        <h id="tempMax0" , class="tempMax"></h>/
+                        <h id="tempMin0" , class="tempMin"></h><br>
+                        <h id="wind0"></h><br>
                     </div>
                 </div>
 
@@ -102,9 +105,9 @@
                     <div class="card-content">
                         <h id="date1"> </h><br>
                         <h id="weather1"></h><br>
-                        <h id="tempMax1"></h><br>
-                        <h id="tempMin1"></h><br>
-                        <h id="wind10m_max1"></h><br>
+                        <h id="tempMax1" , class="tempMax"></h>/
+                        <h id="tempMin1" , class="tempMin"></h><br>
+                        <h id="wind1"></h><br>
                     </div>
                 </div>
 
@@ -115,9 +118,9 @@
                     <div class="card-content">
                         <h id="date2"> </h><br>
                         <h id="weather2"></h><br>
-                        <h id="tempMax2"></h><br>
-                        <h id="tempMin2"></h><br>
-                        <h id="wind10m_max2"></h><br>
+                        <h id="tempMax2" , class="tempMax"></h>/
+                        <h id="tempMin2" , class="tempMin"></h><br>
+                        <h id="wind2"></h><br>
                     </div>
                 </div>
 
@@ -126,9 +129,9 @@
                     <div class="card-content">
                         <h id="date3"> </h><br>
                         <h id="weather3"></h><br>
-                        <h id="tempMax3"></h><br>
-                        <h id="tempMin3"></h><br>
-                        <h id="wind10m_max3"></h><br>
+                        <h id="tempMax3" , class="tempMax"></h>/
+                        <h id="tempMin3" , class="tempMin"></h><br>
+                        <h id="wind3"></h><br>
                     </div>
                 </div>
 
@@ -137,9 +140,9 @@
                     <div class="card-content">
                         <h id="date4"> </h><br>
                         <h id="weather4"></h><br>
-                        <h id="tempMax4"></h><br>
-                        <h id="tempMin4"></h><br>
-                        <h id="wind10m_max4"></h><br>
+                        <h id="tempMax4" , class="tempMax"></h>/
+                        <h id="tempMin4" , class="tempMin"></h><br>
+                        <h id="wind4"></h><br>
                     </div>
                 </div>
 
@@ -149,9 +152,9 @@
                     <div class="card-content">
                         <h id="date5"> </h><br>
                         <h id="weather5"></h><br>
-                        <h id="tempMax5"></h><br>
-                        <h id="tempMin5"></h><br>
-                        <h id="wind10m_max5"></h><br>
+                        <h id="tempMax5" , class="tempMax"></h>/
+                        <h id="tempMin5" , class="tempMin"></h><br>
+                        <h id="wind5"></h><br>
                     </div>
                 </div>
 
@@ -160,15 +163,15 @@
                     <div class="card-content">
                         <h id="date6"> </h><br>
                         <h id="weather6"></h><br>
-                        <h id="tempMax6"></h><br>
-                        <h id="tempMin6"></h><br>
-                        <h id="wind10m_max6"></h><br>
+                        <h id="tempMax6" , class="tempMax"></h>/
+                        <h id="tempMin6" , class="tempMin"></h><br>
+                        <h id="wind6"></h><br>
                     </div>
                 </div>
 
             </div>
             <br>
-            <br>
+
 
         </div>
 
