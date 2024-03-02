@@ -1,8 +1,42 @@
-async function selectFunction() { // Assembles the url.
-    var coordinates = document.getElementById('selectId').value; // Taking the coordinates from the selected city.
-    var url = "https://www.7timer.info/bin/api.pl?" + coordinates + "&product=civillight&output=json"; // Appending the first part of the url + the coordinates + the second part.
-    showResult(url); // Calling the showResult function, passing the url as a parameter. 
+document.addEventListener('DOMContentLoaded', function () {
+    // Read the CSV file and populate the select element
+    fetch('city_coordinates.csv')
+        .then(response => response.text())
+        .then(data => {
+            const rows = data.split('\n').slice(1); // Skip header row
+            const selectElement = document.getElementById('selectId');
+
+            rows.forEach(row => {
+                const [latitude, longitude, city, country] = row.split(',');
+
+                // Check if country is available, else handle the error
+                const optionText = country ? `${city}, ${country}` : city;
+                
+                const option = document.createElement('option');
+                option.value = `${longitude},${latitude}`;
+                option.textContent = optionText;
+                selectElement.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error reading CSV file:', error));
+});
+
+function selectFunction() {
+    const selectElement = document.getElementById('selectId');
+    const selectedOption = selectElement.options[selectElement.selectedIndex];
+
+    if (selectedOption) {
+        const [longitude, latitude] = selectedOption.value.split(',');
+        const locationString = `lon=${longitude}&lat=${latitude}`;
+        console.log(locationString);
+        var url = "https://www.7timer.info/bin/api.pl?" + locationString + "&product=civillight&output=json";
+        showResult(url);
+        // Further processing with locationString
+    } else {
+        console.error('No option selected');
+    }
 }
+
 async function showResult(url) { //Showing result, but also catching an error if there is no proper response from the server.
     for (x = 0; x < 5; x++) { // It will try to fetch data and show the result 5 times in total, if there is a proper response it will stop/break.
         try {
